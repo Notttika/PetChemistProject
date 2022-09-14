@@ -30,7 +30,7 @@ public class YourCartPage {
     }
     @Step("Skip action banner")
     public YourCartPage clickButtonNoThanks(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(2000L));
         wait.until(ExpectedConditions.elementToBeClickable(buttonNoThanks)).click();
         return this;
     }

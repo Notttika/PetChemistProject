@@ -1,10 +1,9 @@
 package AutomationTestPages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,6 +12,7 @@ import java.time.Duration;
 public class OrdersPage {
 
     private WebDriver driver;
+    private WebElement shadowRoot;
 
     public OrdersPage(WebDriver driver) {
         this.driver = driver;
@@ -23,20 +23,21 @@ public class OrdersPage {
 
     @Step("Set a product in search field")
     public OrdersPage setProductSearchField (String Text){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(500L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000L));
         wait.until(ExpectedConditions.elementToBeClickable(textInput)).sendKeys(Text);
         return this;
     }
 
-    @ Step ("Choice a product in the list in search field")
+   @ Step ("Choice a product in the list in search field")
     public OrdersPage clickProduct (){
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        WebElement product = (WebElement) jse.executeScript("return document.querySelector(\"body > div:nth-child(32)\").shadowRoot.querySelector(\"#fast-autocomplete-1234 > div.autocomplete-inner.fs-ac-18tmxq9 > div.fs-product-list.fs-ac-qv7t18 > div > a:nth-child(1)\")");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(500L));
-        wait.until(ExpectedConditions.elementToBeClickable(product)).click();
-        return this;
+       WebElement shadowHost = driver.findElement(By.cssSelector("div[class=\"mobile-fast-ac-container\"] + div"));
+       JavascriptExecutor jsDriver = (JavascriptExecutor) driver;
 
+       SearchContext shadowRoot = (SearchContext) jsDriver.executeScript("return arguments[0].shadowRoot", shadowHost);
+       WebElement shadowContent = shadowRoot.findElement(By.cssSelector("a[data-postion=\"1\"][data-id=\"1855\"]"));
+       WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(3000L));
+       wait.until(ExpectedConditions.elementToBeClickable(shadowContent)).click();
+       return this;
     }
-
 
 }

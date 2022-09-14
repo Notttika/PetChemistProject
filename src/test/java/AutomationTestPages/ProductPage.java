@@ -19,6 +19,8 @@ public class ProductPage {
 
     @FindBy(how = How.XPATH,using ="//div[@class=\'form-field rca-product-variant-options\']/descendant::label[2]")
     private WebElement buttonSizeProduct;
+    @FindBy(how = How.XPATH,using ="//label[@class=\"form-option\" and @for=\"attribute_rectangle_1907\"]")
+    private WebElement buttonPackProduct;
     @FindBy(id="form-action-addToCart")
     private WebElement buttonAddToCart;
     @FindBy(css = "a[class=\'button\'][ href=\'/cart.php\']")
@@ -30,6 +32,12 @@ public class ProductPage {
         wait.until(ExpectedConditions.elementToBeClickable(buttonSizeProduct)).click();
         return this;
     }
+    @Step("Select quantity a product")
+    public ProductPage clickButtonPackProduct(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000L));
+        wait.until(ExpectedConditions.elementToBeClickable(buttonPackProduct)).click();
+        return this;
+    }
 
     @Step ("Add to cart")
     public ProductPage clickButtonAddToCart(){
@@ -39,7 +47,7 @@ public class ProductPage {
     }
     @Step ("Transition to cart")
     public ProductPage clickButtonViewOrEditYourCart(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1500L));
         wait.until(ExpectedConditions.elementToBeClickable(buttonViewOrEditYourCart)).click();
         return this;
     }

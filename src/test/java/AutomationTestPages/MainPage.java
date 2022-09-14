@@ -27,7 +27,7 @@ public class MainPage {
 
     @Step("Click link 'Sing in' to go Login page menu ")
     public MainPage clickButtonSingIn(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1500L));
         wait.until(ExpectedConditions.elementToBeClickable(buttonSingIn)).click();
         return this;
     }
