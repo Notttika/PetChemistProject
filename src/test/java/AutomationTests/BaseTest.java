@@ -8,7 +8,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.PageFactory;
-
 import static AutomationTests.BaseSetup.driver;
 
  @Feature("")
@@ -37,7 +36,7 @@ import static AutomationTests.BaseSetup.driver;
         public void logInUserOrder() throws InterruptedException {
             //GIVEN
             String existingProduct = "Antinol Rapid For Cats";
-            String existingCreditCardNumber = "235667895643";
+            String existingCreditCardNumber = "2356678956437854";
             String existingExpiration = "549";
             String existingNameOnCard = "Ivanov Ivan";
             String existingCvvCard = "5792";
@@ -51,23 +50,28 @@ import static AutomationTests.BaseSetup.driver;
             loginPage.setPassword(existingPassword);
             loginPage.clickButtonSingIn();
             ordersPage.setProductSearchField(existingProduct);
-            Thread.sleep(4000l);
+            Thread.sleep(10000L);
+            //ordersPage.openProductList();
             ordersPage.clickProduct();
             productPage.clickButtonSizeProduct();
             productPage.clickButtonPackProduct();
             productPage.clickButtonAddToCart();
             productPage.clickButtonViewOrEditYourCart();
             yourCartPage.clickButtonCheckOut();
-            Thread.sleep(4000l);
-            yourCartPage.clickButtonNoThanks();
+           // yourCartPage.openBanner();
+           // yourCartPage.clickButtonNoThanks();
+            Thread.sleep(10000L);
             checkOutPage.clickRadioButtonShippingMethod();
             checkOutPage.clickButtonContinuum();
+            Thread.sleep(10000L);
             checkOutPage.setCreditCardNumber(existingCreditCardNumber);
             checkOutPage.setExpiration(existingExpiration);
             checkOutPage.setNameOnCard(existingNameOnCard);
             checkOutPage.setCvvCard(existingCvvCard);
+            Thread.sleep(10000L);
             checkOutPage.clickCheckBoxTermAndCondition();
-            checkOutPage.clickButtonPlaceOrder();
+            Thread.sleep(10000L);
+           // checkOutPage.clickButtonPlaceOrder();
 
         }
      @AfterAll

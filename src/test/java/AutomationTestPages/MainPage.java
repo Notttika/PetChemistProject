@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class MainPage {
@@ -27,7 +26,7 @@ public class MainPage {
 
     @Step("Click link 'Sing in' to go Login page menu ")
     public MainPage clickButtonSingIn(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1500L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
         wait.until(ExpectedConditions.elementToBeClickable(buttonSingIn)).click();
         return this;
     }

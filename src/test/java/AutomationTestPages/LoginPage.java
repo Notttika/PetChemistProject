@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class LoginPage {
@@ -26,19 +25,19 @@ public class LoginPage {
 
     @Step("Set valid email address as '{emailAddressText} ")
     public LoginPage setEmailAddress (String emailAddressText){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1500L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
         wait.until(ExpectedConditions.elementToBeClickable(loginEmailAddress)).sendKeys(emailAddressText);
         return this;
     }
     @Step("Set valid password as '{passwordText}'")
     public LoginPage setPassword (String passwordText){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
         wait.until(ExpectedConditions.elementToBeClickable(loginPassword)).sendKeys(passwordText);
         return this;
     }
     @Step("Click button 'Sing In' to confirm valid user email address and password")
     public LoginPage clickButtonSingIn(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
         wait.until(ExpectedConditions.elementToBeClickable(buttonSignIn)).click();
         return this;
     }

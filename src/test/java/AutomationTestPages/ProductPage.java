@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class ProductPage {
@@ -28,26 +27,26 @@ public class ProductPage {
 
     @Step("Select size a product")
     public ProductPage clickButtonSizeProduct(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
         wait.until(ExpectedConditions.elementToBeClickable(buttonSizeProduct)).click();
         return this;
     }
     @Step("Select quantity a product")
     public ProductPage clickButtonPackProduct(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
         wait.until(ExpectedConditions.elementToBeClickable(buttonPackProduct)).click();
         return this;
     }
 
     @Step ("Add to cart")
     public ProductPage clickButtonAddToCart(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
         wait.until(ExpectedConditions.elementToBeClickable(buttonAddToCart)).click();
         return this;
     }
     @Step ("Transition to cart")
     public ProductPage clickButtonViewOrEditYourCart(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1500L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(8000L));
         wait.until(ExpectedConditions.elementToBeClickable(buttonViewOrEditYourCart)).click();
         return this;
     }
