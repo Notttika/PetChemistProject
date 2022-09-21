@@ -86,8 +86,9 @@ public class CheckOutPage {
     }
     @Step ("Choice term and condition")
     public CheckOutPage clickCheckBoxTermAndCondition (){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
-        wait.until(ExpectedConditions.elementToBeClickable(checkBoxTermAndCondition)).submit();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].checked = true;",checkBoxTermAndCondition);
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
+        //wait.until(ExpectedConditions.elementToBeClickable(checkBoxTermAndCondition)).submit();
         return this;
     }
     @Step ("Confirmation of an order")

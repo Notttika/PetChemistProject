@@ -71,7 +71,8 @@ import static AutomationTests.BaseSetup.driver;
             Thread.sleep(10000L);
             checkOutPage.clickCheckBoxTermAndCondition();
             Thread.sleep(10000L);
-           // checkOutPage.clickButtonPlaceOrder();
+            checkOutPage.clickButtonPlaceOrder();
+            Thread.sleep(10000L);
 
         }
      @AfterAll
