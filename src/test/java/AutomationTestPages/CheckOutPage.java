@@ -16,10 +16,10 @@ public class CheckOutPage {
         this.driver = driver;
     }
         By radioButtonShippingMethod = By.xpath("//ul[@class=\"form-checklist optimizedCheckout-form-checklist\"] /descendant::li[1]");
-        @FindBy(css = "button[id=\"checkout-shipping-continue\"][type=\"submit\"]")
-        private WebElement buttonContinuum;
-        @FindBy(id = "credit-card-number")
-        private WebElement creditCardNumberInput;
+        By buttonContinuum = By.cssSelector("button[id=\\\"checkout-shipping-continue\\\"][type=\\\"submit\\\"]");
+       // @FindBy(id = "credit-card-number")
+       // private WebElement creditCardNumberInput;
+        By creditCardNumberInput = By.id("credit-card-number");
         @FindBy(id = "braintree-hosted-field-number")
         private WebElement iframeCreditCardNumber;
         @FindBy(id = "braintree-hosted-field-expirationDate")
@@ -40,26 +40,40 @@ public class CheckOutPage {
 
     @Step("Choice a shipping method")
     public void  clickRadioButtonShippingMethod() {
-        WebElement element = driver.findElement(radioButtonShippingMethod);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100000L));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(radioButtonShippingMethod));
+        WebElement element = driver.findElement(radioButtonShippingMethod);
         Actions actions = new Actions(driver);
         actions.moveToElement(element).click().perform();
     }
     @Step("Confirmation of order information")
     public CheckOutPage clickButtonContinuum() {
-       ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", buttonContinuum);
-       WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
-       wait.until(ExpectedConditions.elementToBeClickable(buttonContinuum)).submit();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", buttonContinuum);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100000L));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(buttonContinuum));
+
+       // WebElement element = driver.findElement(buttonContinuum);
+        //element.submit();
+      // WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
+       //wait.until(ExpectedConditions.elementToBeClickable(buttonContinuum)).submit();
        return this;
     }
 
     @Step ("Set credit card number in field ‘Credit card number’")
     public CheckOutPage setCreditCardNumber(String Text){
+
+
         driver.switchTo().frame(iframeCreditCardNumber);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000L));
-        wait.until(ExpectedConditions.elementToBeClickable(creditCardNumberInput)).sendKeys(Text);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(creditCardNumberInput));
+        WebElement element = driver.findElement(creditCardNumberInput);
+        element.sendKeys(Text);
         driver.switchTo().defaultContent();
+
+        //driver.switchTo().frame(iframeCreditCardNumber);
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000L));
+        //wait.until(ExpectedConditions.elementToBeClickable(creditCardNumberInput)).sendKeys(Text);
+       // driver.switchTo().defaultContent();
         return this;
     }
     @Step("Set expiration credit card  in the field ‘Expiration’")

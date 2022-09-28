@@ -1,6 +1,7 @@
 package AutomationTestPages;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,6 +19,7 @@ public class ProductPage {
 
     @FindBy(how = How.XPATH,using ="//div[@class=\'form-field rca-product-variant-options\']/descendant::label[2]")
     private WebElement buttonSizeProduct;
+   // By buttonSizeProduct = By.xpath("//div[@class=\\'form-field rca-product-variant-options\\']/descendant::label[2]");
     @FindBy(how = How.XPATH,using ="//label[@class=\"form-option\" and @for=\"attribute_rectangle_1907\"]")
     private WebElement buttonPackProduct;
     @FindBy(id="form-action-addToCart")
@@ -27,13 +29,13 @@ public class ProductPage {
 
     @Step("Select size a product")
     public ProductPage clickButtonSizeProduct(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000L));
         wait.until(ExpectedConditions.elementToBeClickable(buttonSizeProduct)).click();
         return this;
     }
     @Step("Select quantity a product")
     public ProductPage clickButtonPackProduct(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(50000L));
         wait.until(ExpectedConditions.elementToBeClickable(buttonPackProduct)).click();
         return this;
     }

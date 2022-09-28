@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.List;
 
 public class OrdersPage {
 
@@ -33,7 +34,8 @@ public class OrdersPage {
         SearchContext shadowRoot = (SearchContext) jsDriver.executeScript("return arguments[0].shadowRoot", shadowHost);
         WebElement shadowContent = shadowRoot.findElement(By.id("fast-autocomplete-1234"));
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100000L));
-        wait.until(ExpectedConditions.elementToBeClickable(shadowContent)).isDisplayed();
+        wait.until(ExpectedConditions.visibilityOf(shadowContent));//.isDisplayed();
+        shadowContent.isDisplayed();
         Actions actions = new Actions(driver);
         actions.moveToElement(shadowContent).click().perform();
     }
@@ -46,7 +48,7 @@ public class OrdersPage {
        SearchContext shadowRoot = (SearchContext) jsDriver.executeScript("return arguments[0].shadowRoot", shadowHost);
        WebElement shadowContent = shadowRoot.findElement(By.cssSelector("a[data-postion=\"1\"][data-id=\"1855\"]"));
        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
-       wait.until(ExpectedConditions.visibilityOf(shadowContent)).click();
+       wait.until(ExpectedConditions.elementToBeClickable(shadowContent)).click();
     }
 
 }
