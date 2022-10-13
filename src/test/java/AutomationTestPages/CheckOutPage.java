@@ -16,11 +16,12 @@ public class CheckOutPage {
         this.driver = driver;
     }
         By radioButtonShippingMethod = By.xpath("//ul[@class=\"form-checklist optimizedCheckout-form-checklist\"] /descendant::li[1]");
-        By buttonContinuum = By.cssSelector("button[id=\\\"checkout-shipping-continue\\\"][type=\\\"submit\\\"]");
+        By buttonContinuum = By.cssSelector("button[id='checkout-shipping-continue'][type='submit']");
        // @FindBy(id = "credit-card-number")
        // private WebElement creditCardNumberInput;
         By creditCardNumberInput = By.id("credit-card-number");
-        @FindBy(id = "braintree-hosted-field-number")
+       // @FindBy(id = "braintree-hosted-field-number")
+        @FindBy(css = "iframe[id='braintree-hosted-field-number'][name='braintree-hosted-field-number']")
         private WebElement iframeCreditCardNumber;
         @FindBy(id = "braintree-hosted-field-expirationDate")
         private WebElement iframeExpiration;
@@ -48,14 +49,10 @@ public class CheckOutPage {
     }
     @Step("Confirmation of order information")
     public CheckOutPage clickButtonContinuum() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", buttonContinuum);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100000L));
         wait.until(ExpectedConditions.visibilityOfElementLocated(buttonContinuum));
-
-       // WebElement element = driver.findElement(buttonContinuum);
-        //element.submit();
-      // WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
-       //wait.until(ExpectedConditions.elementToBeClickable(buttonContinuum)).submit();
+        WebElement element = driver.findElement(buttonContinuum);
+        element.submit();
        return this;
     }
 
@@ -63,17 +60,17 @@ public class CheckOutPage {
     public CheckOutPage setCreditCardNumber(String Text){
 
 
-        driver.switchTo().frame(iframeCreditCardNumber);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000L));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(creditCardNumberInput));
-        WebElement element = driver.findElement(creditCardNumberInput);
-        element.sendKeys(Text);
-        driver.switchTo().defaultContent();
+        // driver.switchTo().frame(iframeCreditCardNumber);
+       // WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000L));
+       // wait.until(ExpectedConditions.visibilityOfElementLocated(creditCardNumberInput));
+       // WebElement element = driver.findElement(creditCardNumberInput);
+       // element.sendKeys(Text);
+       // driver.switchTo().defaultContent();
 
         //driver.switchTo().frame(iframeCreditCardNumber);
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000L));
-        //wait.until(ExpectedConditions.elementToBeClickable(creditCardNumberInput)).sendKeys(Text);
-       // driver.switchTo().defaultContent();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000L));
+        wait.until(ExpectedConditions.elementToBeClickable(creditCardNumberInput)).sendKeys(Text);
+        driver.switchTo().defaultContent();
         return this;
     }
     @Step("Set expiration credit card  in the field ‘Expiration’")

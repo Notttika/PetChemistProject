@@ -4,8 +4,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
@@ -17,39 +15,41 @@ public class ProductPage {
         this.driver = driver;
     }
 
-    @FindBy(how = How.XPATH,using ="//div[@class=\'form-field rca-product-variant-options\']/descendant::label[2]")
-    private WebElement buttonSizeProduct;
-   // By buttonSizeProduct = By.xpath("//div[@class=\\'form-field rca-product-variant-options\\']/descendant::label[2]");
-    @FindBy(how = How.XPATH,using ="//label[@class=\"form-option\" and @for=\"attribute_rectangle_1907\"]")
-    private WebElement buttonPackProduct;
-    @FindBy(id="form-action-addToCart")
-    private WebElement buttonAddToCart;
-    @FindBy(css = "a[class=\'button\'][ href=\'/cart.php\']")
-    private WebElement buttonViewOrEditYourCart;
+    By buttonSizeProduct = By.xpath("//div[@class='form-field rca-product-variant-options']/descendant::label[2]");
+    By buttonPackProduct = By.xpath("//label[@class='form-option' and @for='attribute_rectangle_1907']");
+    By buttonAddToCart = By.id("form-action-addToCart");
+    By buttonViewOrEditYourCart= By.cssSelector("a[class='button'][ href='/cart.php']");
 
     @Step("Select size a product")
     public ProductPage clickButtonSizeProduct(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000L));
-        wait.until(ExpectedConditions.elementToBeClickable(buttonSizeProduct)).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(buttonSizeProduct));
+        WebElement element = driver.findElement(buttonSizeProduct);
+        element.click();
         return this;
     }
     @Step("Select quantity a product")
     public ProductPage clickButtonPackProduct(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(50000L));
-        wait.until(ExpectedConditions.elementToBeClickable(buttonPackProduct)).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(buttonPackProduct));
+        WebElement element = driver.findElement(buttonPackProduct);
+        element.click();
         return this;
     }
-
     @Step ("Add to cart")
     public ProductPage clickButtonAddToCart(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
-        wait.until(ExpectedConditions.elementToBeClickable(buttonAddToCart)).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(buttonAddToCart));
+        WebElement element = driver.findElement(buttonAddToCart);
+        element.click();
         return this;
     }
     @Step ("Transition to cart")
     public ProductPage clickButtonViewOrEditYourCart(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(8000L));
-        wait.until(ExpectedConditions.elementToBeClickable(buttonViewOrEditYourCart)).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(buttonViewOrEditYourCart));
+        WebElement element = driver.findElement(buttonViewOrEditYourCart);
+        element.click();
         return this;
     }
 }
