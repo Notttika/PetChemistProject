@@ -16,7 +16,6 @@ public class BaseSetup {
 
     public BaseSetup() {
         System.setProperty("webdriver.chrome.driver", "C:/D/Luxoft/Driver/chromedriver.exe");
-
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         options.setHeadless(false);

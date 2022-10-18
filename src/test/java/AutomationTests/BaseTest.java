@@ -1,7 +1,6 @@
 package AutomationTests;
 
 import AutomationTestPages.*;
-import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.AfterAll;
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.PageFactory;
 import static AutomationTests.BaseSetup.driver;
 
- @Feature("")
  public class BaseTest {
 
         private static OrdersPage ordersPage;
@@ -37,7 +35,7 @@ import static AutomationTests.BaseSetup.driver;
             //GIVEN
             String existingProduct = "Antinol Rapid For Cats";
             String existingCreditCardNumber = "2356678956437854";
-            String existingExpiration = "549";
+            String existingExpiration = "0202";
             String existingNameOnCard = "Ivanov Ivan";
             String existingCvvCard = "579";
             String existingEmailAddress= "kolod4enko777@gmail.com";
@@ -50,8 +48,7 @@ import static AutomationTests.BaseSetup.driver;
             loginPage.setPassword(existingPassword);
             loginPage.clickButtonSingIn();
             ordersPage.setProductSearchField(existingProduct);
-            Thread.sleep(5000L);
-            //ordersPage.openProductList();
+            ordersPage.openProductList();
             ordersPage.clickProduct();
             productPage.clickButtonSizeProduct();
             //productPage.clickButtonPackProduct();
@@ -59,20 +56,15 @@ import static AutomationTests.BaseSetup.driver;
             productPage.clickButtonViewOrEditYourCart();
             yourCartPage.clickButtonCheckOut();
             yourCartPage.ignoreBanner();
-            Thread.sleep(5000L);
             checkOutPage.clickRadioButtonShippingMethod();
-            Thread.sleep(5000L);
             checkOutPage.clickButtonContinuum();
+            Thread.sleep(5000L);
             checkOutPage.setCreditCardNumber(existingCreditCardNumber);
-           // checkOutPage.setExpiration(existingExpiration);
-           // checkOutPage.setNameOnCard(existingNameOnCard);
-            //checkOutPage.setCvvCard(existingCvvCard);
-           // Thread.sleep(10000L);
-          //  checkOutPage.clickCheckBoxTermAndCondition();
-          //  Thread.sleep(10000L);
-          //  checkOutPage.clickButtonPlaceOrder();
-          //  Thread.sleep(10000L);
-
+            checkOutPage.setExpiration(existingExpiration);
+            checkOutPage.setNameOnCard(existingNameOnCard);
+            checkOutPage.setCvvCard(existingCvvCard);
+            checkOutPage.clickCheckBoxTermAndCondition();
+            checkOutPage.clickButtonPlaceOrder();
         }
      @AfterAll
      @Step("Quit browser")

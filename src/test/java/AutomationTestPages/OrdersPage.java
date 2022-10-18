@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
-import java.util.List;
 
 public class OrdersPage {
 
@@ -33,11 +32,10 @@ public class OrdersPage {
 
         SearchContext shadowRoot = (SearchContext) jsDriver.executeScript("return arguments[0].shadowRoot", shadowHost);
         WebElement shadowContent = shadowRoot.findElement(By.id("fast-autocomplete-1234"));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100000L));
-        wait.until(ExpectedConditions.visibilityOf(shadowContent));//.isDisplayed();
-        shadowContent.isDisplayed();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000L));
+        wait.until(ExpectedConditions.visibilityOf(shadowContent));
         Actions actions = new Actions(driver);
-        actions.moveToElement(shadowContent).click().perform();
+        actions.moveToElement(shadowContent).pause(Duration.ofMillis(3000L)).perform();
     }
 
     @ Step ("Choice a product in the list in search field")
